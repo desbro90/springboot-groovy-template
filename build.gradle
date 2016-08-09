@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.codehaus.groovy:groovy-all")
+    compile("org.codehaus.groovy:groovy-testng")
+
+    testCompile("junit:junit")
+    testCompile("org.mockito:mockito-all:1.10.19")
+    testCompile("org.powermock:powermock-api-mockito:1.6.5")
+
+}
+
+bootRun {
+    addResources = true
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
