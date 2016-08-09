@@ -12,6 +12,6 @@ class SampleController {
 
     @RequestMapping('/')
     index() {
-        this.text
+        [text:this.text]
     }
 }
